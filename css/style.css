@@ -1,0 +1,187 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+@keyframes moveInLeft {
+  /* before the animation starts */
+  0% {
+    opacity: 0;
+    /* start the animation from -100px */
+    transform: translateX(-100px); }
+  /* at 80% stage of animation */
+  80% {
+    /* the animation goes 20px to the right */
+    transform: translateX(10px); }
+  /* after the animation finishes */
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  /* before the animation starts */
+  0% {
+    opacity: 0;
+    /* start the animation from -100px */
+    transform: translateX(100px); }
+  /* at 80% stage of animation */
+  80% {
+    /* the animation goes 20px to the right */
+    transform: translateX(-10px); }
+  /* after the animation finishes */
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInButton {
+  /* before the animation starts */
+  0% {
+    opacity: 0;
+    /* start the animation from -100px */
+    transform: translateY(30px); }
+  /* after the animation finishes */
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* this is used to discard the shake in animation */
+  /* the part behind the element is fixed with this */
+  backface-visibility: hidden;
+  margin-bottom: 60px; }
+  .heading-primary--main {
+    /* span element is an inline element */
+    /* we are making it block, so it takes entire width */
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    animation: moveInLeft;
+    animation-duration: 1s;
+    /* how the animation should proceed in accordance to time */
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    /* span element is an inline element */
+    /* we are making it block, so it takes entire width */
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #7ed56f, #27b485);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all 0.2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.u-center-text {
+  text-align: center; }
+
+.btn {
+  /* link pseudo class */
+  /* visited is to check if the user already clicked the button once */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    /* making the button inline block element */
+    display: inline-block;
+    border-radius: 100px;
+    transition: all 0.2s;
+    position: relative; }
+  .btn:hover {
+    /* in css y moves top to bottom by default */
+    transform: translateY(-3px);
+    /* no shadow in x direction, 10px in y-direction and blur range, color of shadow */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      /* styles for the after element when the button is hovered */
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .btn:active {
+    /* when the button is clicked */
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn::after {
+    /* after is a virtual element after the button */
+    /* it doesnt exist physically */
+    /* for every after pseudo class, content and display properties must be given */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s; }
+  .btn--animated {
+    animation: moveInButton 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; }
+
+.header {
+  /* the height is 95% of the view port height */
+  height: 95vh;
+  /* we have two images one on top of the other */
+  /* to right specifies, start from right */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(39, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  /* the top of the image always stays at top(stays the same), the bottom may cut based on size of screen */
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  .header__logo-box {
+    position: absolute;
+    /* parent element from where top and left starts */
+    /* here the parent element is header */
+    /* in header we have set position to relative explicitly */
+    top: 40px;
+    left: 40px; }
+  .header__logo {
+    height: 53px; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0px;
+  margin-top: -20vh; }
